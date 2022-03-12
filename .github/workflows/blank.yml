@@ -38,5 +38,5 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           make -C ext/num4diff
-          gem build num4def.gemspec
+          gem build num4diff.gemspec
           gem install num4diff-*.gem
