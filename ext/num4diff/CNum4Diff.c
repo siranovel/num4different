@@ -19,15 +19,21 @@ static CNum4Diff _cNum4Diff = {
 /**************************************/
 double CNum4Diff_eulerMethod(double yi, double x, double h, Func func)
 {
-	return _cNum4Diff.FP_eulerMethod(yi, x, h, func);
+    assert(func != 0);
+
+    return _cNum4Diff.FP_eulerMethod(yi, x, h, func);
 }
 double CNum4Diff_heunMethod(double yi, double x, double h, Func func)
 {
-	return _cNum4Diff.FP_heunMethod(yi, x, h, func);
+    assert(func != 0);
+
+    return _cNum4Diff.FP_heunMethod(yi, x, h, func);
 }
 double CNum4Diff_rungeKuttaMethod(double yi, double x, double h, Func func)
 {
-	return _cNum4Diff.FP_rungeKuttaMethod(yi, x, h, func);
+    assert(func != 0);
+
+    return _cNum4Diff.FP_rungeKuttaMethod(yi, x, h, func);
 }
 /**************************************/
 /* 処理実行部                         */
@@ -39,22 +45,19 @@ static double CNum4Diff_doEulerMethod(double yi, double x, double h, Func func)
 {
     double y = func(x);
 
-    return yi + y * h;
+    return yi + h * y;
 }
 /*
  * ホイン法
  */
 static double CNum4Diff_doHeunMethod(double yi, double x, double h, Func func)
 {
+    double y = func(x);
     double k1 = 0.0;
     double k2 = 0.0;
-    double y = 0.0;
-    double Y1 = 0.0;
 
-    y = func(x);
-    Y1 = yi + h * y;
-    k1 = y * h;
-    k2 = Y1 * h;
+    k1 = h * y;
+    k2 = h * (yi + h * y);
     return yi + (k1 + k2) / 2.0;
 }
 /*
