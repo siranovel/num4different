@@ -57,7 +57,7 @@ static double CNum4Diff_doHeunMethod(double yi, double x, double h, Func func)
     double k2 = 0.0;
 
     k1 = h * y;
-    k2 = h * (yi + h * y);
+    k2 = h * (yi + k1);
     return yi + (k1 + k2) / 2.0;
 }
 /*
