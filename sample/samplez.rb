@@ -2,7 +2,7 @@ require 'num4diff'
 def eulerMethodTest
     f = Proc.new do |x|
         a = 1.0
-        next a * x + 1
+        next 1.0 + a * x
     end
     y0 = 1.0
     h = 0.001
@@ -13,13 +13,13 @@ def eulerMethodTest
         yi = yi_1
     }
     print "1.0:"
-    print yi_1
+    print yi_1                         # yi_1 = 2.5015
     puts
 end
 def heunMethodTest
     f = Proc.new do |x|
         a = 1.0
-        next a * x + 1
+        next 1.0 + a * x
     end
     y0 =  1.0
     h = 0.00001
@@ -30,13 +30,13 @@ def heunMethodTest
         yi = yi_1
     }
     print "1.0:"
-    print yi_1
+    print yi_1                         # yi_1 = 2.594909275334592
     puts
 end
 def rungeKuttaMethodTest
     f = Proc.new do |x|
         a = 1.0
-        next a * x + 1
+        next 1.0 + a * x
     end
     y0 = 1.0
     h = 0.001
@@ -47,7 +47,7 @@ def rungeKuttaMethodTest
         yi = yi_1
     }
     print "1.0:"
-    print yi_1
+    print yi_1                         # yi_1 = 2.6760202602624927
     puts
 end
 eulerMethodTest()

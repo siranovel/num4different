@@ -65,11 +65,11 @@ static double CNum4Diff_doHeunMethod(double yi, double x, double h, Func func)
  */
 static double CNum4Diff_doRungeKuttaMethod(double yi, double x, double h, Func func)
 {
+    double y = 0.0;
     double k1 = 0.0;
     double k2 = 0.0;
     double k3 = 0.0;
     double k4 = 0.0;
-    double y = 0.0;
 
     y = func(x);
     k1 = h * y;
