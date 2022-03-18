@@ -2,7 +2,9 @@ require 'ffi'
 
 module Num4DiffLib
     extend FFI::Library
-    ffi_lib ['libnum4diff.so']
+    spec = Gem.loaded_specs["num4diff"]
+    gem_root = spec.gem_dir
+    ffi_lib ["#{gem_root}/ext/num4diff/libnum4diff.so"]
     
     callback   :f, [:double], :double
     # yi_1 = eulerMethod(yi, x, h, func)
