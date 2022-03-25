@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'num4diff'
-  s.version     = '0.0.17'
-  s.date        = '2022-03-17'
+  s.version     = '0.0.20'
+  s.date        = '2022-03-24'
   s.summary     = "num for diffrent!"
   s.description = "numerical solution for ordinaray differential equations"
   s.authors     = ["siranovel"]
@@ -11,4 +11,5 @@ Gem::Specification.new do |s|
   s.files       = ["lib/num4diff.rb"]
   s.files       += Dir["ext/num4diff/*.so"]
   s.extensions  = %w[ext/num4diff]
+  s.add_runtime_dependency 'ffi', '~> 1.15', '>= 1.15.0'
 end
