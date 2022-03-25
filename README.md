@@ -18,12 +18,11 @@ ruby FFIライブラリ
 
 ## install ##
 
-    From rubygems:  
+From rubygems:　　
 ~~~
     [sudo] gem install num4diff
 ~~~
-
-    or from the git repository on github:  
+or from the git repository on github:  
 ~~~
     git clone https://github.com/siranovel/num4different.git  
     cd num4different  
