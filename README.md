@@ -26,7 +26,7 @@ or from the git repository on github:
 ~~~
     git clone https://github.com/siranovel/num4different.git  
     cd num4different  
-    make -C ext/num4different
+    make -C ext/num4diff
     jruby -S gem build num4diff.gemspec
     jruby -S gem install num4diff
 ~~~
