@@ -11,5 +11,5 @@ Gem::Specification.new do |s|
   s.files       = ["lib/num4diff.rb", "LICENSE"]
   s.files       += Dir["ext/num4diff/*.so"]
   s.extensions  = %w[ext/num4diff]
-  s.add_runtime_dependency 'ffi', '~> 1.15', '>= 1.15.0'
+  s.add_runtime_dependency 'ffi', '~> 1.15', '>= 1.15.4'
 end
