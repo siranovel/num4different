@@ -3,7 +3,8 @@ class Num4DiffTest
     def initialize
         @y0 = 1.0
         @h = 0.001
-        @e = Math.exp(1)
+        @a = 1
+        @e = Math.exp(@a)
     end
     #
     # オイラー法のテスト
@@ -12,12 +13,11 @@ class Num4DiffTest
         yi_1 = 0.0
         0.step(1, @h) { |x|
             yi_1 =  Num4DiffLib::eulerMethod(yi, x, @h) do
-                a = 1.0
-                next 1.0 + a * x
+                next 1.0 + @a * x
             end
             yi = yi_1
         }
-        print "exp(1):", @e
+        print "exp(", @a, "):", @e
         print " "
         print "1.0:", yi_1             # yi_1 = 2.5015
         puts
@@ -29,13 +29,12 @@ class Num4DiffTest
         yi_1 = 0.0
         0.step(1, @h) { |x|
             yi_1 =  Num4DiffLib::heunMethod(yi, x, @h) do
-                a = 1.0
-                next 1.0 + a * x
+                next 1.0 + @a * x
             end
             yi = yi_1
         }
 
-        print "exp(1):", @e
+        print "exp(", @a, "):", @e
         print " "
 	print "1.0:", yi_1             # yi_1 = 2.597305097418414
 	puts
@@ -47,14 +46,13 @@ class Num4DiffTest
         yi_1 = 0.0
         0.step(1, @h) { |x|
             yi_1 =  Num4DiffLib::rungeKuttaMethod(yi, x, @h) do
-                a = 1.0
-                next 1.0 + a * x
+                next 1.0 + @a * x
             end
             yi = yi_1
         }
-        print "exp(1):", @e
+        print "exp(", @a, "):", @e
         print " "
-        print "1.0:", yi_1             # yi_1 = 2.597305097418414
+        print "1.0:", yi_1             # yi_1 = 2.6760202602624927 
         puts
     end
 end
