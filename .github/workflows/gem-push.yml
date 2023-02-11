@@ -15,7 +15,7 @@ jobs:
 #      packages: write
     strategy:
       matrix:
-        ruby-version: ['jruby']
+        ruby-version: [ jruby ]
 
     steps:
     - uses: actions/checkout@v3
