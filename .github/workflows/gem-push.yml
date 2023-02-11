@@ -18,11 +18,11 @@ jobs:
         ruby-version: [ jruby ]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
     - name: Set up Ruby ${{ matrix.ruby-version }}
       uses: actions/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby-version }}
+#      with:
+#        ruby-version: ${{ matrix.ruby-version }}
 
 #    - name: Publish to GPR
 #      run: |
