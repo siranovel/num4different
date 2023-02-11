@@ -8,13 +8,13 @@ module Num4DiffLib
     extend FFI::Library
 
     ffi_lib FFI::Compiler::Loader.find('num4diff') 
-    # @overload dy = f(xi)
+    # @overload f(xi)
     #   @param [double] xi xiの値
     #   @return [double] xiに対するyの値
     callback   :f, [:double], :double
 
     #
-    # @overload  yi_1 = eulerMethod(yi, xi, h, func)
+    # @overload  eulerMethod(yi, xi, h, func)
     #   オイラー法による数値計算
     #   @param [double] yi xiに対するyiの値
     #   @param [double] xi xiの値
@@ -24,7 +24,7 @@ module Num4DiffLib
     #
     attach_function :eulerMethod,
         :CNum4Diff_eulerMethod, [:double, :double, :double, :f], :double
-    # @overload yi_1 = heunMethod(yi, xi, h, func)
+    # @overload heunMethod(yi, xi, h, func)
     #   ホイン法による数値計算
     #   @param [double] yi xiに対するyiの値
     #   @param [double] xi xiの値
@@ -35,7 +35,7 @@ module Num4DiffLib
     attach_function :heunMethod,
         :CNum4Diff_heunMethod, [:double, :double, :double, :f], :double
     #
-    # @overload yi_1 = rungeKuttaMethod(yi, xi, h, func)
+    # @overload rungeKuttaMethod(yi, xi, h, func)
     #   4次のルンゲ＝クッタ法による数値計算
     #   @param [double] yi xiに対するyiの値
     #   @param [double] xi xiの値
