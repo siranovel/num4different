@@ -13,9 +13,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    strategy:
-      matrix:
-        ruby-version: [ 2.6 ]
 
     steps:
     - uses: actions/checkout@v2
