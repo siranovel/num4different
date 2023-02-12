@@ -1,1 +1,1 @@
-require “rubygems.org“
+require ‘rubygems‘
