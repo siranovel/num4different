@@ -1,1 +1,1 @@
-require ‘rubygems‘
+source ”https://rubygems.org”
