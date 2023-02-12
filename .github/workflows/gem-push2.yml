@@ -18,6 +18,7 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.0
+    - run: bundle install
 
     - name: Publish to GPR
       run: |
