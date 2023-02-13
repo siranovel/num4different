@@ -31,7 +31,6 @@ jobs:
       run: |
         gh release create "${TAG_NAME}" --draft
       env:
-        TAG_NAME: "v0.2.0"
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TAG_NAME: ${{ steps.tag.outputs.name }}
         
