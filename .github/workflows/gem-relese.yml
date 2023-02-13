@@ -1,0 +1,34 @@
+name: Ruby Gem(relese)
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build + relese
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Ruby 2.6
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6.10
+
+    - name: Cofigu git
+      run: |
+        git config --global user.name "${GITHUB_ACTOR}"
+        get config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+      env:
+        GEM_HOST_API_KEY: "Bearer ${{secrets.GITHUB_TOKEN}}"
+        OWNER: ${{ github.repository_owner }}
+
+    - name: Publish to RubyGems
+      run: |
+        gh release create "${TAG_NAME}" --draft
+      env:
+        GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_AUTH_TOKEN}}"
