@@ -24,8 +24,8 @@ jobs:
 
     - name: Publish to RubyGems
       run: |
-        git config --global user.name "${GITHUB_ACTOR}"
-        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git config --global user.name "siranovel"
+        git config --global user.email "siranovel@gmail.com"
         mkdir -p $HOME/.gem
         touch $HOME/.gem/credentials
         chmod 0600 $HOME/.gem/credentials
