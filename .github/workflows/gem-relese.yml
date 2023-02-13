@@ -29,7 +29,7 @@ jobs:
 
     - name: Publish to RubyGems
       run: |
-        gh release create "${TAG_NAME}" --draft
+        gh release create "v0.2.0" --draft
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TAG_NAME: ${{ steps.tag.outputs.name }}
