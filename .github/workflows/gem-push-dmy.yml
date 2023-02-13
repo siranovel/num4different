@@ -22,6 +22,9 @@ jobs:
 
     - name: Publish to RubyGems
       run: |
+        mkdir -p $HOME/.gem
+        touch $HOME/.gem/credentials
+        chmod 0600 $HOME/.gem/credentials
         curl -u siranovel https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials
         chmod 0600 ~/.gem/credentials
         gem build *.gemspec
