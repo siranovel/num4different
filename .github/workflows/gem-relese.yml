@@ -22,7 +22,9 @@ jobs:
 
     - name: Publish to RubyGems
       run: |
-        gh release create "v0.2.0" --draft
+        export OWNER=$( echo ${{ github.repository }} | cut -d "/" -f 1 )
+        gem build *.gemspec
+        gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} *.gem
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TAG_NAME: ${{ steps.tag.outputs.name }}
