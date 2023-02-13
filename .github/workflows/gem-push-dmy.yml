@@ -22,7 +22,7 @@ jobs:
 
     - name: Publish to RubyGems
       run: |
-        curl -u hogehoge https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials
+        curl -u siranovel https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials
         chmod 0600 ~/.gem/credentials
         gem build *.gemspec
     
