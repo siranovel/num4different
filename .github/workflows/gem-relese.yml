@@ -31,4 +31,6 @@ jobs:
       run: |
         gh release create "${TAG_NAME}" --draft
       env:
-        GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_AUTH_TOKEN}}"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TAG_NAME: ${{ steps.tag.outputs.name }}
+        
