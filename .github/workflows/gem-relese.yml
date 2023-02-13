@@ -3,7 +3,7 @@ name: Ruby Gem(relese)
 on:
   push:
     tags:
-      - 
+      - 'v*'
 
 jobs:
   build:
