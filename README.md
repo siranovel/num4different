@@ -1,6 +1,6 @@
 num4different
 =============
-数値計算による微分方程式を解くFFI
+数値計算による常微分方程式を解くFFI
 
 ## decscription ##
 ![num4diff](images/ucNumDiff.jpg)
