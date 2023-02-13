@@ -24,7 +24,6 @@ jobs:
 
     - name: Publish to RubyGems
       run: |
-        gem build *.gemspec
-        bundle release
+        bundle exec  gem build *.gemspec release
       env:
         GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_AUTH_TOKEN}}"
