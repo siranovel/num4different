@@ -19,14 +19,6 @@ jobs:
       with:
         ruby-version: 2.6.10
 
-    - name: Cofigu git
-      run: |
-        git config --global user.name "${GITHUB_ACTOR}"
-        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-      env:
-        GEM_HOST_API_KEY: "Bearer ${{secrets.GITHUB_TOKEN}}"
-        OWNER: ${{ github.repository_owner }}
-
     - name: Publish to RubyGems
       run: |
         gh release create "v0.2.0" --draft
