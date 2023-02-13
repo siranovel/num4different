@@ -14,3 +14,4 @@ Gem::Specification.new do |s|
   s.add_dependency 'ffi-compiler', '~> 1.0', '>= 1.0.1'
   s.add_dependency 'rake', '~> 12.3', '>= 12.3.3'
 end
+
