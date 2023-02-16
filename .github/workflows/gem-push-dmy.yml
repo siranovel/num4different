@@ -13,9 +13,7 @@ jobs:
       packages: write
 
     steps:
-    - uses: actions/checkout@v2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v3
     - name: Set up Ruby 2.6
       uses: ruby/setup-ruby@v1
       with:
@@ -30,4 +28,4 @@ jobs:
       env:
         GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_AUTH_TOKEN}}"
         OWNER: ${{ github.repository_owner }}
-        GEM_HOST_OTP_CODE: github
+       GEM_HOST_OTP_CODE: ${{ github.event.inputs.rubygems-otp-code }} 
