@@ -15,6 +15,7 @@ num4different
 ruby FFIライブラリ
 
 ## Usage ##
+sample/samplez.rb ファイル参照
 
 ## install ##
 
