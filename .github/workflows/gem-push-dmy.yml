@@ -23,7 +23,6 @@ jobs:
 
     - name: Publish to RubyGems
       run: |
-        gem --version
         git config --global user.name "${{ github.actor }}"
         git config --global user.email "siranovel@gmail.com"
         bundle exec rake release
