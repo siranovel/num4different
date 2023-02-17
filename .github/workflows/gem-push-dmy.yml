@@ -23,10 +23,9 @@ jobs:
 
     - name: Publish to RubyGems
       run: |
-        git config --global user.name "siranovel"
+　 　　　gem --version
+        git config --global user.name "${{ github.actor }}"
         git config --global user.email "siranovel@gmail.com"
         bundle exec rake release
       env:
-        GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_AUTH_TOKEN}}"
-        OWNER: ${{ github.repository_owner }}
-        GEM_HOST_OTP_CODE: ${{ github.event.inputs.rubygems-otp-code }} 
+        GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_AUTH_TOKEN}}" 
