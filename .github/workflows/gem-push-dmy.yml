@@ -23,7 +23,7 @@ jobs:
 
     - name: Publish to RubyGems
       run: |
-        echo ${secrets.RUBYGEMS_PASSWORD}
+        echo ${RUBYGEMS_PASSWORD}
         curl -u siranovel:”${{ RUBYGEMS_PASSWORD }}” https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials
         chmod 0600 ~/.gem/credentials 
         git config --global user.name "${{ github.actor }}"
