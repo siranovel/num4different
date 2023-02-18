@@ -24,7 +24,8 @@ jobs:
     - name: Publish to RubyGems
       run: |
         echo ${RUBYGEMS_PASSWORD}
-        curl -u siranovel:${{RUBYGEMS_PASSWORD}} https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials; chmod 0600 ~/.gem/credentials 
+        curl -u siranovel:”${{ RUBYGEMS_PASSWORD }}” https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials
+        chmod 0600 ~/.gem/credentials 
         git config --global user.name "${{ github.actor }}"
         git config --global user.email "siranovel@gmail.com"
         bundle exec rake release
