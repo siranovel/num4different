@@ -20,8 +20,10 @@ jobs:
       with:
         ruby-version: 2.6.10
 
-    - name: Publish to RubyGems
+    - name: Publish to GPR
       run: |
+        mkdir -p $HOME/.gem
+        touch $HOME/.gem/credentials
         export OWNER=$( echo ${{ github.repository }} | cut -d "/" -f 1 )
         gem build *.gemspec
         gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} *.gem
