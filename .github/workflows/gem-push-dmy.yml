@@ -19,7 +19,8 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.6.10
-#    - run: bundle install
+        bundler-cache: true
+    - run: bundle install
 
  #   - name: Publish to GPR
  #     run: |
