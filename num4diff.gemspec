@@ -1,14 +1,14 @@
 Gem::Specification.new do |s|
   s.name        = 'num4diff'
-  s.version     = '0.3.9'
-  s.date        = '2023-02-19'
+  s.version     = '0.3.10'
+  s.date        = '2023-02-20'
   s.summary     = "num for different!"
   s.description = "numerical solution for ordinaray differential equations"
   s.authors     = ["siranovel"]
   s.email       = "siranovel@gmail.com"
   s.homepage    = "http://github.com/siranovel/num4different"
   s.license     = "MIT"
-  s.files       = ["LICENSE"]
+  s.files       = ["LICENSE", "Gemfile"]
   s.files       += Dir.glob("{lib,ext}/**/*")
   s.extensions  = %w[ext/num4diff/Rakefile]
   s.add_dependency 'ffi-compiler', '~> 1.0', '>= 1.0.1'
