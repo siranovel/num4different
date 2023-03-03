@@ -24,7 +24,7 @@ jobs:
       run: |
         mkdir -p $HOME/.gem
         touch $HOME/.gem/credentials
-        printf -- "---\n:rubygems_api_key: ${{ secrets.RUBYGEMS_AUTH_TOKEN }}\n" > $HOME/.gem/credentials
+        printf -- "---\n:github: ${{ secrets.GITHUB_TOKEN }}\n" > $HOME/.gem/credentials
         chmod 0600 $HOME/.gem/credentials
         export OWNER=$( echo ${{ github.repository }} | cut -d "/" -f 1 )
         gem build *.gemspec
