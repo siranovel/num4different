@@ -31,4 +31,4 @@ jobs:
       env:
         GEM_HOST_API_KEY: "Bearer ${{secrets.GITHUB_TOKEN}}"
         OWNER: ${{ github.repository_owner }}
-        TAG_NAME: ${{ steps.tag.outputs.name }}
+
