@@ -34,7 +34,6 @@ jobs:
 
     - name: Publish to RubyGems
       run: |
-        rm *.gem
         mkdir -p $HOME/.gem
         touch $HOME/.gem/credentials
         printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
