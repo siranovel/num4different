@@ -42,4 +42,4 @@ jobs:
         gem build *.gemspec
         gem push --otp github *.gem
       env:
-        GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_API_KEY}}"
+        GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_AUTH_TOKEN}}"
