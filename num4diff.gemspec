@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'num4diff'
-  s.version     = '0.3.16'
-  s.date        = '2023-02-21'
+  s.version     = '0.3.17'
+  s.date        = '2023-03-26'
   s.summary     = "num for different!"
   s.description = "numerical solution for ordinaray differential equations"
   s.authors     = ["siranovel"]
