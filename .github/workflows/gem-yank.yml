@@ -1,0 +1,33 @@
+name: Ruby Yank
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  yank:
+    name: gem yank
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby 2.6
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.6.10
+    - run: gem install gemcutter
+
+    - name: yank to RubyGems
+      run: |
+        gem yank num4diff -v 0.4.2
+        gem yank num4diff -v 0.3.16
+        gem yank num4diff -v 0.3.15
+        gem yank num4diff -v 0.3.9
+        gem yank num4diff -v 0.3.8
+        gem yank num4diff -v 0.3.7
+        gem yank num4diff -v 0.3.5
+
+          
