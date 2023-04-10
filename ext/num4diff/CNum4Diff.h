@@ -12,6 +12,9 @@ struct _CNum4Diff
 	double (*FP_eulerMethod)(double yi, double xi, double h, Func func);
 	double (*FP_heunMethod)(double yi, double xi, double h, Func func);
 	double (*FP_rungeKuttaMethod)(double yi, double xi, double h, Func func);
+	double (*FP_adamsBashforthMethod)(double a, double b, double yi, double h, Func func);
+	double (*FP_adamsMoultonMethod)(double a, double b, double yi, double h, Func func);
+;
 };
 /**************************************/
 /* define宣言                         */
@@ -22,4 +25,6 @@ struct _CNum4Diff
 double CNum4Diff_eulerMethod(double yi, double xi, double h, Func func);
 double CNum4Diff_heunMethod(double yi, double xi, double h, Func func);
 double CNum4Diff_rungeKuttaMethod(double yi, double xi, double h, Func func);
+double CNum4Diff_adamsBashforthMethod(double a, double b, double yi, double h, Func func);
+double CNum4Diff_adamsMoultonMethod(double a, double b, double yi, double h, Func func);
 #endif
