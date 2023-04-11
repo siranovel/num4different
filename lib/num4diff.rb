@@ -65,7 +65,7 @@ module Num4DiffLib
         :CNum4Diff_adamsBashforthMethod, [:double, :double, :double, :double, :f], :double
     #
     # アダムス・ムルトン法(3段)による数値計算
-    # @overload adamsMoultonMethod(yi, xi, h, func)
+    # @overload adamsMoultonMethod(a, b, yi, xi, h, func)
     #   @param [double] a 下限値
     #   @param [double] b 上限値
     #   @param [double] yi xiに対するyiの値
