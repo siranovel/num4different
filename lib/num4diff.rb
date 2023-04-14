@@ -53,25 +53,25 @@ module Num4DiffLib
         :CNum4Diff_rungeKuttaMethod, [:double, :double, :double, :f], :double
     #
     # アダムス・バッシュフォース法(3段)による数値計算
-    # @overload adamsBashforthMethod(a, b, yi, h, func)
+    # @overload adamsBashforthMethod(a, b, y0, h, func)
     #   @param [double] a 下限値
     #   @param [double] b 上限値
-    #   @param [double] yi xiに対するyiの値
+    #   @param [double] y0 y(x0=a)の値
     #   @param [double] h  刻み幅
     #   @param [callback] func xiに対する傾きを計算する関数
-    #   @return [double] xi+hに対するyi_1の値
+    #   @return [double] [a,b]の積分値
     #
     attach_function :adamsBashforthMethod,
         :CNum4Diff_adamsBashforthMethod, [:double, :double, :double, :double, :f], :double
     #
     # アダムス・ムルトン法(3段)による数値計算
-    # @overload adamsMoultonMethod(a, b, yi, xi, h, func)
+    # @overload adamsMoultonMethod(a, b, y0, xi, h, func)
     #   @param [double] a 下限値
     #   @param [double] b 上限値
-    #   @param [double] yi xiに対するyiの値
+    #   @param [double] y0 y0 y(x0=a)の値
     #   @param [double] h  刻み幅
     #   @param [callback] func xiに対する傾きを計算する関数
-    #   @return [double] xi+hに対するyi_1の値
+    #   @return [double] [a,b]の積分値
     #
     attach_function :adamsMoultonMethod,
         :CNum4Diff_adamsMoultonMethod, [:double, :double, :double, :double, :f], :double
