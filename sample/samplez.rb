@@ -70,7 +70,7 @@ class Num4DiffTest
         yi_1 =  Num4DiffLib::adamsMoultonMethod(0, 1, yi, @h, @func)
         print "exp(", @a, "):", @e
         print " "
-        print "1.0:", yi_1             # yi_1 = 2.708102856162907 
+        print "1.0:", yi_1             # yi_1 = 2.7104123200664993 
         puts
     end
 end
