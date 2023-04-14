@@ -2,10 +2,16 @@
 
 ## Unreleased
 
+## [0.4.5] - 2023-04-14
+
+### Fixed
+- Fix function of adamsBashforthMethod
+- Fix function of adamsMoultonMethod
+
 ## [0.4.4] - 2023-04-11
 
 ### Added
-- Add CHANGELOG.md
+- Add file of CHANGELOG.md
 
 ## [0.4.3] - 2023-04-10
 
@@ -16,8 +22,8 @@
 ## [0.4.1] - 2023-03-26
 
 ### Fixed
-- Fix from add_runtime_dependency 'rake'
-        to add_development_dependency 'rake'
+- Fix from add_runtime_dependency 'ffi-compiler'
+        to add_development_dependency 'ffi-compiler'
 
 ## [0.3.14] - 2023-02-21
 
