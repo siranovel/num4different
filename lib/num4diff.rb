@@ -26,7 +26,7 @@ module Num4DiffLib
     #   @return [double] xi+hに対するyi_1の値
     #
     attach_function :eulerMethod,
-        :CNum4Diff_eulerMethod, [:double, :double, :double, :f], :double
+        :CNum4Diff_Tier_eulerMethod, [:double, :double, :double, :f], :double
     #
     # ホイン法による数値計算
     # @overload heunMethod(yi, xi, h, func)
@@ -38,7 +38,7 @@ module Num4DiffLib
     #   @return [double] xi+hに対するyi_1の値
     #
     attach_function :heunMethod,
-        :CNum4Diff_heunMethod, [:double, :double, :double, :f], :double
+        :CNum4Diff_Tier_heunMethod, [:double, :double, :double, :f], :double
     #
     # 4次のルンゲ＝クッタ法による数値計算
     # @overload  rungeKuttaMethod(yi, xi, h, func)
@@ -50,7 +50,7 @@ module Num4DiffLib
     #   @return [double] xi+hに対するyi_1の値
     #
     attach_function :rungeKuttaMethod,
-        :CNum4Diff_rungeKuttaMethod, [:double, :double, :double, :f], :double
+        :CNum4Diff_Tier_rungeKuttaMethod, [:double, :double, :double, :f], :double
     #
     # アダムス・バッシュフォース法(3段)による数値計算
     # @overload adamsBashforthMethod(a, b, y0, h, func)
@@ -62,7 +62,7 @@ module Num4DiffLib
     #   @return [double] [a,b]の積分値
     #
     attach_function :adamsBashforthMethod,
-        :CNum4Diff_adamsBashforthMethod, [:double, :double, :double, :double, :f], :double
+        :CNum4Diff_Multistage_adamsBashforthMethod, [:double, :double, :double, :double, :f], :double
     #
     # アダムス・ムルトン法(3段)による数値計算
     # @overload adamsMoultonMethod(a, b, y0, xi, h, func)
@@ -74,5 +74,5 @@ module Num4DiffLib
     #   @return [double] [a,b]の積分値
     #
     attach_function :adamsMoultonMethod,
-        :CNum4Diff_adamsMoultonMethod, [:double, :double, :double, :double, :f], :double
+        :CNum4Diff_Multistage_adamsMoultonMethod, [:double, :double, :double, :double, :f], :double
 end

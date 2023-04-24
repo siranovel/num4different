@@ -9,11 +9,15 @@ static double CNum4Diff_doRungeKuttaMethod(double yi, double xi, double h, Func 
 static double CNum4Diff_doAdamsBashforthMethod(double a, double b, double y0, double h, Func func);
 static double CNum4Diff_doAdamsMoultonMethod(double a, double b, double y0, double h, Func func);
 static CNum4Diff _cNum4Diff = {
+    .tierMethod = {
 	.FP_eulerMethod          = CNum4Diff_doEulerMethod,
 	.FP_heunMethod           = CNum4Diff_doHeunMethod,
 	.FP_rungeKuttaMethod     = CNum4Diff_doRungeKuttaMethod,
+    },
+    .multistageMethod = {
 	.FP_adamsBashforthMethod = CNum4Diff_doAdamsBashforthMethod,
 	.FP_adamsMoultonMethod   = CNum4Diff_doAdamsMoultonMethod,
+    },
 };
 /**************************************/
 /* InterFface部                       */
@@ -21,37 +25,37 @@ static CNum4Diff _cNum4Diff = {
 /**************************************/
 /* Class部                            */
 /**************************************/
-double CNum4Diff_eulerMethod(double yi, double xi, double h, Func func)
+double CNum4Diff_Tier_eulerMethod(double yi, double xi, double h, Func func)
 {
     assert(func != 0);
 
-    return _cNum4Diff.FP_eulerMethod(yi, xi, h, func);
+    return _cNum4Diff.tierMethod.FP_eulerMethod(yi, xi, h, func);
 }
-double CNum4Diff_heunMethod(double yi, double xi, double h, Func func)
+double CNum4Diff_Tier_heunMethod(double yi, double xi, double h, Func func)
 {
     assert(func != 0);
 
-    return _cNum4Diff.FP_heunMethod(yi, xi, h, func);
+    return _cNum4Diff.tierMethod.FP_heunMethod(yi, xi, h, func);
 }
-double CNum4Diff_rungeKuttaMethod(double yi, double xi, double h, Func func)
+double CNum4Diff_Tier_rungeKuttaMethod(double yi, double xi, double h, Func func)
 {
     assert(func != 0);
 
-    return _cNum4Diff.FP_rungeKuttaMethod(yi, xi, h, func);
+    return _cNum4Diff.tierMethod.FP_rungeKuttaMethod(yi, xi, h, func);
 }
-double CNum4Diff_adamsBashforthMethod(double a, double b, double y0, double h, Func func)
+double CNum4Diff_Multistage_adamsBashforthMethod(double a, double b, double y0, double h, Func func)
 {
     assert(func != 0);
     assert(a < b);
 
-    return _cNum4Diff.FP_adamsBashforthMethod(a, b, y0, h, func);
+    return _cNum4Diff.multistageMethod.FP_adamsBashforthMethod(a, b, y0, h, func);
 }
-double CNum4Diff_adamsMoultonMethod(double a, double b, double y0, double h, Func func)
+double CNum4Diff_Multistage_adamsMoultonMethod(double a, double b, double y0, double h, Func func)
 {
     assert(func != 0);
     assert(a < b);
 
-    return _cNum4Diff.FP_adamsMoultonMethod(a, b, y0, h, func);
+    return _cNum4Diff.multistageMethod.FP_adamsMoultonMethod(a, b, y0, h, func);
 }
 /**************************************/
 /* 処理実行部                         */
@@ -109,10 +113,10 @@ static double CNum4Diff_doAdamsBashforthMethod(double a, double b, double y0, do
 
     fi2  = y0;
     xi = xi + h;
-    fi1  = CNum4Diff_rungeKuttaMethod(fi2, xi, h, func);
+    fi1  = CNum4Diff_Tier_rungeKuttaMethod(fi2, xi, h, func);
     y = fi1;
     for (xi = xi + h; xi < b; xi += h) {
-        fi  = CNum4Diff_rungeKuttaMethod(fi1, xi, h, func);
+        fi  = CNum4Diff_Tier_rungeKuttaMethod(fi1, xi, h, func);
         y = y + h * (23 * fi - 16 * fi1 + 5 * fi2) / 12.0;
         fi2 = fi1;
         fi1 = fi;
@@ -133,10 +137,10 @@ static double CNum4Diff_doAdamsMoultonMethod(double a, double b, double y0, doub
 
     fi2  = y0;
     xi = xi + h;
-    fi1  = CNum4Diff_rungeKuttaMethod(fi2, xi, h, func);
+    fi1  = CNum4Diff_Tier_rungeKuttaMethod(fi2, xi, h, func);
     y = fi1;
     for (xi = xi + h; xi < b; xi += h) {
-        fi  = CNum4Diff_rungeKuttaMethod(fi1, xi, h, func);
+        fi  = CNum4Diff_Tier_rungeKuttaMethod(fi1, xi, h, func);
         y_pred = y + h * (23 * fi - 16 * fi1 + 5 * fi2) / 12.0;
         y = y + h * (5 * y_pred  + 8 * fi -1 * fi1) / 12.0;
         fi2 = fi1;

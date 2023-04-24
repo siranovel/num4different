@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## [0.4.5] - 2023-04-24
+
+### Fixed
+- Fix Split into single-step and multi-step solutions.
+
 ## [0.4.5] - 2023-04-14
 
 ### Fixed
