@@ -53,24 +53,33 @@ class Num4DiffTest
         puts
     end
     #
-    # アダムス・バッシュフォース法(3段)のテスト
-    def adamsBashforthMethodTest
+    # アダムス・バッシュフォース法(k段)のテスト
+    #   k = 2    yi_1 = 2.6738300800873835
+    #   k = 3    yi_1 = 2.6761325593844068
+    #   k = 4    yi_1 = 2.6784369572244606
+    #   k = 5    yi_1 = 2.680743276163638
+    def adamsBashforthMethodTest(k)
         yi = @y0
-
-        yi_1 =  Num4DiffLib::adamsBashforthMethod(0, 1, yi, @h, @func)
+        yi_1 =  Num4DiffLib::adamsBashforthMethod(k, 0, 1, yi, @h, @func)
+        print "k=", k, " "
         print "exp(", @a, "):", @e
         print " "
-        print "1.0:", yi_1             # yi_1 = 2.7072138201422864
+        print "1.0:", yi_1             
         puts
     end
     #
-    # アダムス・ムルトン法(3段)のテスト
-    def adamsMoultonMethodTest
+    # アダムス・ムルトン法(k段)のテスト
+    #   k = 2    yi_1 = 2.6738301371944577
+    #   k = 3    yi_1 = 2.6761326061765063
+    #   k = 4    yi_1 = 2.678436999480585
+    #   k = 5    yi_1 = 2.6807433155801172
+    def adamsMoultonMethodTest(k)
         yi = @y0
-        yi_1 =  Num4DiffLib::adamsMoultonMethod(0, 1, yi, @h, @func)
+        yi_1 =  Num4DiffLib::adamsMoultonMethod(k, 0, 1, yi, @h, @func)
+        print "k=", k, " "
         print "exp(", @a, "):", @e
         print " "
-        print "1.0:", yi_1             # yi_1 = 2.7104123200664993 
+        print "1.0:", yi_1              
         puts
     end
 end
@@ -78,5 +87,7 @@ tst = Num4DiffTest.new
 tst.eulerMethodTest()
 tst.heunMethodTest()
 tst.rungeKuttaMethodTest()
-tst.adamsBashforthMethodTest()
-tst.adamsMoultonMethodTest()
+2.step(5) { |k|
+    tst.adamsBashforthMethodTest(k)
+    tst.adamsMoultonMethodTest(k)
+}
