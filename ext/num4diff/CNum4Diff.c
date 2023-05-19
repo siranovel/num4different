@@ -6,8 +6,8 @@
 static double CNum4Diff_doEulerMethod(double yi, double xi, double h, Func func);
 static double CNum4Diff_doHeunMethod(double yi, double xi, double h, Func func);
 static double CNum4Diff_doRungeKuttaMethod(double yi, double xi, double h, Func func);
-static double CNum4Diff_doAdamsBashforthMethod(double a, double b, double y0, double h, Func func);
-static double CNum4Diff_doAdamsMoultonMethod(double a, double b, double y0, double h, Func func);
+static double CNum4Diff_doAdamsBashforthMethod(int k, double a, double b, double y0, double h, Func func);
+static double CNum4Diff_doAdamsMoultonMethod(int k, double a, double b, double y0, double h, Func func);
 static CNum4Diff _cNum4Diff = {
     .tierMethod = {
 	.FP_eulerMethod          = CNum4Diff_doEulerMethod,
@@ -18,6 +18,35 @@ static CNum4Diff _cNum4Diff = {
 	.FP_adamsBashforthMethod = CNum4Diff_doAdamsBashforthMethod,
 	.FP_adamsMoultonMethod   = CNum4Diff_doAdamsMoultonMethod,
     },
+};
+/* アダムステーブル */
+static AdamsTbl bash[] = {
+    [0] = {.s = 2,                     // k = 2
+           .bv = {[0] = 3,   [1] = -1}
+          },          
+    [1] = {.s = 12,                    // k = 3
+           .bv = {[0] = 23,  [1] = -16,  [2] = 5}
+          },
+    [2] = {.s = 24,                    // k = 4
+           .bv = {[0] = 55,  [1] = -59,  [2] = 37,  [3] = -9}
+          }, 
+    [3] = {.s = 720,                   // k = 5
+           .bv = {[0] = 1901,[1] = -2774,[2] = 2616,[3] = -1274, [4] = 251}
+          }, 
+};
+static AdamsTbl moulton[] = {
+    [0] = {.s = 2,                     // k = 2
+           .bv = {[0] = 1,  [1] = 1}
+          },           
+    [1] = {.s = 12,                    // k = 3
+           .bv = {[0] = 5,  [1] = 8,  [2] = -1}
+          },
+    [2] = {.s = 24,                    // k = 4
+           .bv = {[0] = 9,  [1] = 19, [2] = -5,  [3] = 1}
+          }, 
+    [3] = {.s = 720,                   // k = 5
+          .bv = {[0] = 251,[1] = 646,[2] = -264,[3] = 106,[4] = -19}
+          }, 
 };
 /**************************************/
 /* InterFface部                       */
@@ -43,19 +72,21 @@ double CNum4Diff_Tier_rungeKuttaMethod(double yi, double xi, double h, Func func
 
     return _cNum4Diff.tierMethod.FP_rungeKuttaMethod(yi, xi, h, func);
 }
-double CNum4Diff_Multistage_adamsBashforthMethod(double a, double b, double y0, double h, Func func)
+double CNum4Diff_Multistage_adamsBashforthMethod(int k, double a, double b, double y0, double h, Func func)
 {
     assert(func != 0);
     assert(a < b);
+    assert((1 < k) && (k < 6));
 
-    return _cNum4Diff.multistageMethod.FP_adamsBashforthMethod(a, b, y0, h, func);
+    return _cNum4Diff.multistageMethod.FP_adamsBashforthMethod(k, a, b, y0, h, func);
 }
-double CNum4Diff_Multistage_adamsMoultonMethod(double a, double b, double y0, double h, Func func)
+double CNum4Diff_Multistage_adamsMoultonMethod(int k, double a, double b, double y0, double h, Func func)
 {
     assert(func != 0);
     assert(a < b);
+    assert((1 < k) && (k < 6));
 
-    return _cNum4Diff.multistageMethod.FP_adamsMoultonMethod(a, b, y0, h, func);
+    return _cNum4Diff.multistageMethod.FP_adamsMoultonMethod(k, a, b, y0, h, func);
 }
 /**************************************/
 /* 処理実行部                         */
@@ -101,50 +132,72 @@ static double CNum4Diff_doRungeKuttaMethod(double yi, double xi, double h, Func 
     return yi + (k1 + 2 * k2 + 2 * k3 + k4) / 6.0; 
 }
 /*
- * アダムス・バッシュフォース法(3段)
+ * アダムス・バッシュフォース法(k段)
  */
-static double CNum4Diff_doAdamsBashforthMethod(double a, double b, double y0, double h, Func func)
+static double CNum4Diff_doAdamsBashforthMethod(int k, double a, double b, double y0, double h, Func func)
 {
     double xi = a;
-    double fi;
-    double fi1 = 0;
-    double fi2 = 0;
     double y = 0.0;
+    double *f = malloc(sizeof(double) * k);
+    int i;
+    double bk;
 
-    fi2  = y0;
-    xi = xi + h;
-    fi1  = CNum4Diff_Tier_rungeKuttaMethod(fi2, xi, h, func);
-    y = fi1;
+    f[k - 1] = y0;
+    for (i = 0; i < k - 2; i++) {
+        f[k - (i + 2)] =  CNum4Diff_Tier_rungeKuttaMethod(f[k - (i + 1)], xi, h, func);
+    }
     for (xi = xi + h; xi < b; xi += h) {
-        fi  = CNum4Diff_Tier_rungeKuttaMethod(fi1, xi, h, func);
-        y = y + h * (23 * fi - 16 * fi1 + 5 * fi2) / 12.0;
-        fi2 = fi1;
-        fi1 = fi;
+        f[0]  = CNum4Diff_Tier_rungeKuttaMethod(f[1], xi, h, func);
+        // 予測子
+        bk = 0.0;
+        for (i = 0; i < k; i++) {
+            bk += bash[k - 2].bv[i] * f[i];
+        }
+        y = f[0] + h * bk / bash[k - 2].s;
+        // f値をずらす
+        for (i = 0; i < k - 1; i++) {
+            f[k - (i + 1)] = f[k - (i + 2)];
+        }
     }
     return y;
 }
 /*
- * アダムス・ムルトン法(3段)
+ * アダムス・ムルトン法(k段)
  */
-static double CNum4Diff_doAdamsMoultonMethod(double a, double b, double y0, double h, Func func)
+static double CNum4Diff_doAdamsMoultonMethod(int k, double a, double b, double y0, double h, Func func)
 {
     double xi = a;
-    double fi;
-    double fi1 = 0;
-    double fi2 = 0;
     double y_pred = 0.0;
     double y = 0.0;
+    double *f = malloc(sizeof(double) * k);
+    double *f2 = malloc(sizeof(double) * (k + 1));
+    int i;
+    double bk;
 
-    fi2  = y0;
-    xi = xi + h;
-    fi1  = CNum4Diff_Tier_rungeKuttaMethod(fi2, xi, h, func);
-    y = fi1;
+    f[k - 1] = y0;
+    for (i = 0; i < k - 2; i++) {
+        f[k - (i + 2)] =  CNum4Diff_Tier_rungeKuttaMethod(f[k - (i + 1)], xi, h, func);
+    }
     for (xi = xi + h; xi < b; xi += h) {
-        fi  = CNum4Diff_Tier_rungeKuttaMethod(fi1, xi, h, func);
-        y_pred = y + h * (23 * fi - 16 * fi1 + 5 * fi2) / 12.0;
-        y = y + h * (5 * y_pred  + 8 * fi -1 * fi1) / 12.0;
-        fi2 = fi1;
-        fi1 = fi;
+        f[0]  = CNum4Diff_Tier_rungeKuttaMethod(f[1], xi, h, func);
+        // 予測子
+        bk = 0.0;
+        for (i = 0; i < k; i++) {
+            bk += bash[k - 2].bv[i] * f[i];
+            f2[i + 1] = f[i];
+        }
+        y_pred = f[0] + h * bk / bash[k - 2].s;
+        f2[0] = y_pred;
+        // 修正子
+        bk = 0.0;
+        for (i = 0; i < k; i++) {
+            bk += moulton[k - 2].bv[i] * f2[i];
+        }
+        y = f[0] + h * bk / moulton[k - 2].s;
+        // f値をずらす
+        for (i = 0; i < k - 1; i++) {
+            f[k - (i + 1)] = f[k - (i + 2)];
+        }
     }
     return y;
 }

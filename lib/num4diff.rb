@@ -52,8 +52,9 @@ module Num4DiffLib
     attach_function :rungeKuttaMethod,
         :CNum4Diff_Tier_rungeKuttaMethod, [:double, :double, :double, :f], :double
     #
-    # アダムス・バッシュフォース法(3段)による数値計算
-    # @overload adamsBashforthMethod(a, b, y0, h, func)
+    # アダムス・バッシュフォース法(k段)による数値計算
+    # @overload adamsBashforthMethod(k, a, b, y0, h, func)
+    #   @param [int]    k k段アダムス法
     #   @param [double] a 下限値
     #   @param [double] b 上限値
     #   @param [double] y0 y(x0=a)の値
@@ -62,10 +63,11 @@ module Num4DiffLib
     #   @return [double] [a,b]の積分値
     #
     attach_function :adamsBashforthMethod,
-        :CNum4Diff_Multistage_adamsBashforthMethod, [:double, :double, :double, :double, :f], :double
+        :CNum4Diff_Multistage_adamsBashforthMethod, [:int, :double, :double, :double, :double, :f], :double
     #
-    # アダムス・ムルトン法(3段)による数値計算
-    # @overload adamsMoultonMethod(a, b, y0, xi, h, func)
+    # アダムス・ムルトン法(k段)による数値計算
+    # @overload adamsMoultonMethod(k, a, b, y0, xi, h, func)
+    #   @param [int]    k k段アダムス法
     #   @param [double] a 下限値
     #   @param [double] b 上限値
     #   @param [double] y0 y0 y(x0=a)の値
@@ -74,5 +76,5 @@ module Num4DiffLib
     #   @return [double] [a,b]の積分値
     #
     attach_function :adamsMoultonMethod,
-        :CNum4Diff_Multistage_adamsMoultonMethod, [:double, :double, :double, :double, :f], :double
+        :CNum4Diff_Multistage_adamsMoultonMethod, [:int, :double, :double, :double, :double, :f], :double
 end
