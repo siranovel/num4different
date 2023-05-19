@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-## [0.4.6] - 2023-05-18
+## [0.5.1] - 2023-05-18
 
 ### Fixed
 - Fix correspondence of k step.
@@ -10,7 +10,7 @@
 ### Changed
 - chg wiki-uri
 
-## [0.4.5] - 2023-04-24
+## [0.4.6] - 2023-04-24
 
 ### Fixed
 - Fix Split into single-step and multi-step solutions.
