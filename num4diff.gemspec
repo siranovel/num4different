@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'num4diff'
   s.version     = '0.4.6'
-  s.date        = '2023-04-23'
+  s.date        = '2023-05-18'
   s.summary     = "num for different!"
   s.description = "numerical solution for ordinaray differential equations"
   s.authors     = ["siranovel"]
@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
       'changelog_uri'     => s.homepage + '/blob/main/CHANGELOG.md',
       'documentation_uri' => "https://rubydoc.info/gems/#{s.name}/#{s.version}",
       'homepage_uri'      => s.homepage,
+      'wiki_uri'          => 'https://github.com/siranovel/mydocs/tree/main/num4different',
   }
   s.license     = "MIT"
   s.files       = ["LICENSE", "Gemfile", "CHANGELOG.md"]

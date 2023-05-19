@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## [0.4.6] - 2023-05-18
+
+### Fixed
+- Fix correspondence of k step.
+
+### Changed
+- chg wiki-uri
+
 ## [0.4.5] - 2023-04-24
 
 ### Fixed
