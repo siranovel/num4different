@@ -141,6 +141,7 @@ static double CNum4Diff_doAdamsBashforthMethod(int k, double a, double b, double
     double *f = malloc(sizeof(double) * k);
     int i;
     double bk;
+    AdamsTbl *ptBash = &bash[k - 2];
 
     f[k - 1] = y0;
     for (i = 0; i < k - 2; i++) {
@@ -151,9 +152,9 @@ static double CNum4Diff_doAdamsBashforthMethod(int k, double a, double b, double
         // 予測子
         bk = 0.0;
         for (i = 0; i < k; i++) {
-            bk += bash[k - 2].bv[i] * f[i];
+            bk += ptBash->bv[i] * f[i];
         }
-        y = f[0] + h * bk / bash[k - 2].s;
+        y = f[0] + h * bk / ptBash->s;
         // f値をずらす
         for (i = 0; i < k - 1; i++) {
             f[k - (i + 1)] = f[k - (i + 2)];
@@ -173,6 +174,8 @@ static double CNum4Diff_doAdamsMoultonMethod(int k, double a, double b, double y
     double *f2 = malloc(sizeof(double) * (k + 1));
     int i;
     double bk;
+    AdamsTbl *ptBash = &bash[k - 2];
+    AdamsTbl *ptMoulton = &moulton[k - 2];
 
     f[k - 1] = y0;
     for (i = 0; i < k - 2; i++) {
@@ -183,17 +186,17 @@ static double CNum4Diff_doAdamsMoultonMethod(int k, double a, double b, double y
         // 予測子
         bk = 0.0;
         for (i = 0; i < k; i++) {
-            bk += bash[k - 2].bv[i] * f[i];
+            bk += ptBash->bv[i] * f[i];
             f2[i + 1] = f[i];
         }
-        y_pred = f[0] + h * bk / bash[k - 2].s;
+        y_pred = f[0] + h * bk / ptBash->s;
         f2[0] = y_pred;
         // 修正子
         bk = 0.0;
         for (i = 0; i < k; i++) {
-            bk += moulton[k - 2].bv[i] * f2[i];
+            bk += ptMoulton->bv[i] * f2[i];
         }
-        y = f[0] + h * bk / moulton[k - 2].s;
+        y = f[0] + h * bk / ptMoulton->s;
         // f値をずらす
         for (i = 0; i < k - 1; i++) {
             f[k - (i + 1)] = f[k - (i + 2)];
