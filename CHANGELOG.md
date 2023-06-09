@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## [0.5.2] - 2023-06-08
+
+### Fixed
+- Fix refactor to adamsBashforthMethod and adamsMoultonMethod.
+
 ## [0.5.1] - 2023-05-18
 
 ### Fixed
