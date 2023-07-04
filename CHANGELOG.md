@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## [0.5.2] - 2023-07-02
+
+### Fixed
+- change bug for  adamsBashforthMethod and adamsMoultonMethod.
+
 ## [0.5.2] - 2023-06-08
 
 ### Fixed
