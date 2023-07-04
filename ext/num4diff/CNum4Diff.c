@@ -146,8 +146,9 @@ static double CNum4Diff_doAdamsBashforthMethod(int k, double a, double b, double
     f[k - 1] = y0;
     for (i = 0; i < k - 2; i++) {
         f[k - (i + 2)] =  CNum4Diff_Tier_rungeKuttaMethod(f[k - (i + 1)], xi, h, func);
+        xi = xi + h;
     }
-    for (xi = xi + h; xi < b; xi += h) {
+    for (xi = xi; xi < b; xi += h) {
         f[0]  = CNum4Diff_Tier_rungeKuttaMethod(f[1], xi, h, func);
         // 予測子
         bk = 0.0;
@@ -180,8 +181,9 @@ static double CNum4Diff_doAdamsMoultonMethod(int k, double a, double b, double y
     f[k - 1] = y0;
     for (i = 0; i < k - 2; i++) {
         f[k - (i + 2)] =  CNum4Diff_Tier_rungeKuttaMethod(f[k - (i + 1)], xi, h, func);
+        xi = xi + h;
     }
-    for (xi = xi + h; xi < b; xi += h) {
+    for (xi = xi; xi < b; xi += h) {
         f[0]  = CNum4Diff_Tier_rungeKuttaMethod(f[1], xi, h, func);
         // 予測子
         bk = 0.0;
