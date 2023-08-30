@@ -5,7 +5,7 @@
 ## [0.5.4] - 2023-08-29
 
 ### Changed
-- chg add sample of yardoc
+- chg add sample in yardoc
 
 ## [0.5.3] - 2023-07-02
 
