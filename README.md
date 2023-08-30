@@ -1,6 +1,6 @@
 num4different
 =============
-数値計算による常微分方程式を解くFFI
+数値計算による微分方程式を解くFFI
 
 ## decscription ##
 ![num4diff](images/ucNumDiff.jpg)
@@ -12,10 +12,9 @@ num4different
 ## VS. ##
 
 ## Requirement ##
-ruby FFIライブラリ
+ruby FFI-compilerライブラリ
 
 ## Usage ##
-sample/samplez.rb ファイル参照
 
 ## install ##
 
@@ -28,8 +27,8 @@ or from the git repository on github:
 ~~~
     git clone https://github.com/siranovel/num4different.git  
     cd num4different  
-    jruby -S gem build *.gemspec
-    jruby -S gem install num4diff
+    gem build num4diff.gemspec
+    gem install num4diff
 ~~~
 
 ## Contribution ##
