@@ -2,10 +2,15 @@
 
 ## Unreleased
 
+## [0.5.5] - 2023-09-02
+
+### Changed
+- chg  sample of yardoc
+
 ## [0.5.4] - 2023-08-29
 
 ### Changed
-- chg add sample in yardoc
+- chg add sample of yardoc
 
 ## [0.5.3] - 2023-07-02
 
