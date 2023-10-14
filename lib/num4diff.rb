@@ -25,9 +25,10 @@ module Num4DiffLib
     #   @return [double] xi+hに対するyi_1の値
     # @example
     #    yi = 1.0
-    #    h = v
+    #    h = 0.001
+    #    a = 1
     #    func = Proc.new{|x|
-    #        1.0 + @a * x 
+    #        1.0 + a * x 
     #    }
     #    yi_1 =  Num4DiffLib::eulerMethod(yi, 0.0, h, func)  
     #
@@ -43,9 +44,10 @@ module Num4DiffLib
     #   @return [double] xi+hに対するyi_1の値
     # @example
     #    yi = 1.0
-    #    h = v
+    #    h = 0.001
+    #    a = 1
     #    func = Proc.new{|x|
-    #        1.0 + @a * x 
+    #        1.0 + a * x 
     #    }
     #    yi_1 =  Num4DiffLib::heunMethod(yi, 0.0, h, func)  
     #
@@ -61,9 +63,10 @@ module Num4DiffLib
     #   @return [double] xi+hに対するyi_1の値
     # @example
     #    yi = 1.0
-    #    h = v
+    #    h = 0.001
+    #    a = 1
     #    func = Proc.new{|x|
-    #        1.0 + @a * x 
+    #        1.0 + a * x 
     #    }
     #    yi_1 =  Num4DiffLib::rungeKuttaMethod(yi, 0.0, h, func)  
     #
@@ -81,9 +84,10 @@ module Num4DiffLib
     #   @return [double] [a,b]の積分値
     # @example
     #    yi = 1.0
-    #    h = v
+    #    h = 0.001
+    #    a = 1
     #    func = Proc.new{|x|
-    #        1.0 + @a * x 
+    #        1.0 + a * x 
     #    }
     #    yi_1 =  Num4DiffLib::adamsBashforthMethod(2, 0, 1, yi, h, func)  
     #
@@ -101,9 +105,10 @@ module Num4DiffLib
     #   @return [double] [a,b]の積分値
     # @example
     #    yi = 1.0
-    #    h = v
+    #    h = 0.001
+    #    a = 1
     #    func = Proc.new{|x|
-    #        1.0 + @a * x 
+    #        1.0 + a * x 
     #    }
     #    yi_1 =  Num4DiffLib::adamsMoultonMethod(2, 0, 1, yi, h, func)  
     #
