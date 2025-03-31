@@ -16,6 +16,8 @@ ruby FFI-compilerライブラリ
 
 ## Usage ##
 
+sample/spec内の各ファイル参照
+
 ## install ##
 
 From rubygems:  
