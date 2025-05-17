@@ -25,6 +25,13 @@ From rubygems:
     [sudo] gem install num4diff
 ~~~
 
+Install via Gemfile:  
+~~~
+source "https://rubygems.pkg.github.com/siranovel" do
+    gem "num4diff"
+end
+~~~
+
 or from the git repository on github:  
 ~~~
     git clone https://github.com/siranovel/num4different.git  
